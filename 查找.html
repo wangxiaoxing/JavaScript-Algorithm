@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //插入排序
+    function insertionSort(arr) {
+        var  temp,inner;
+        for(var outer=1;outer<=arr.length-1;outer++){
+            temp=arr[outer];
+            inner=outer;
+            while (inner>0&&(arr[inner-1]>=temp)){
+                arr[inner]=arr[inner-1];
+                inner--;
+            }
+            arr[inner]=temp;
+        }
+    }
+
+    function display(arr) {
+            var restr="";
+            for(var i=0;i<arr.length;i++){
+                restr+=arr[i]+" ";
+                if(i>0&i%10==0){
+                    restr+="\n";
+                }
+            }
+            console.log(restr);
+
+    }
+
+    //顺序查找
+    function seqSearch(arr,data) {
+        for(var i=0;i<arr.length;i++){
+            if(arr[i]==data){
+                return true;
+            }
+        }
+        return false;
+    }
+    //查找最小值
+    function findMin(arr) {
+        var min=arr[0];
+        for(var i=1;i<arr.length;i++){
+            if(arr[i]<min){
+                min=arr[i];
+            }
+        }
+        return min;
+    }
+
+    //查找最大值
+    function findMax(arr) {
+        var max=arr[0];
+        for(var i=1;i<arr.length;i++){
+            if(arr[i]>max){
+                max=arr[i];
+            }
+        }
+        return max;
+    }
+
+    //自组织方式的seqSearch()函数，将查找到数据移到前面.80-20原则
+    function seqSearch(arr,data) {
+        for(var i=0;i<arr.length;i++){
+            if(arr[i]==data&&i>(arr.length*0.2)){
+                swap(arr,i,0);
+                return true;
+            }else if(arr[i]==data){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //二分查找（针对已经排好序的）
+    function binSearch(arr,data) {
+        var upperBound=arr.length-1;
+        var lowerBound=0;
+        while (lowerBound<=upperBound){
+            var mid=Math.floor((upperBound+lowerBound)/2);
+            console.log("当前的中点："+mid);
+            if(arr[mid]<data){
+                lowerBound=mid+1;
+            }else if(arr[mid]>data){
+                upperBound=mid-1;
+            }else {
+                return mid;
+            }
+        }
+        return -1;
+    }
+    //统计数据集中出现的所有重复的值
+    function count(arr,data) {
+        var count=0;
+        var position=binSearch(arr,data);
+        if(position>-1){
+            count++;
+            for(var i=position-1;i>0;i--){
+                if(arr[i]==data){
+                    count++;
+                }else{
+                    break;
+                }
+            }
+            for(var i=position+1;i<arr.length;i++){
+                if(arr[i]==data){
+                    count++;
+                }else {
+                    break;
+                }
+            }
+        }
+       return count;
+    }
+
+    //test
+    var nums=[];
+    for(var i=0;i<100;i++){
+        nums[i]=Math.floor(Math.random()*101);
+    }
+    insertionSort(nums);
+    display(nums);
+//    var result=binSearch(nums,5);
+//    if(result>=0){
+//        console.log(result);
+//    }
+    var result=count(nums,45);
+    console.log(result);
+
+</script>
+</body>
+</html>

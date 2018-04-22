@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<fieldset>
+    <legend>Which color do you prefer</legend>
+    <ul>
+        <li><input type="radio" value="red" name="color" id="colorRed"><label for="colorRed">Red</label></li>
+        <li><input type="radio" value="green" name="color" id="colorGreen"><label for="colorGreen">Green</label></li>
+        <li><input type="radio" value="blue" name="color" id="colorBlue"><label for="colorBlue">Blue</label></li>
+    </ul>
+</fieldset>
+<script>
+    var radios=document.getElementsByName("color");
+    //console.log(radios);
+    var radios=document.getElementsByTagName("input");
+    alert(radios.length);
+    console.log(radios instanceof HTMLCollection);
+    var name=radios.namedItem("color");
+    console.log(name);
+</script>
+</body>
+</html>

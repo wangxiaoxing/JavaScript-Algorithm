@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //创建一个记录学生成绩的对象， 提供一个添加成绩的方法， 以及一个显示学生平均成绩的方法
+    function StudentGrades() {
+        this.grades=[];
+        this.add=add;
+        this.average=average;
+    }
+    function add(grade) {
+        this.grades.push(grade);
+    }
+    function average() {
+        var total=0;
+        for(var i=0;i<this.grades.length;i++){
+            total=total+this.grades[i];
+        }
+        return total/this.grades.length;
+    }
+    var wyx=new StudentGrades();
+    wyx.add(100);
+    wyx.add(99);
+    wyx.add(98);
+    console.log(wyx.average());
+    //将一组单词存储在一个数组中， 并按正序和倒序分别显示这些单词
+    var words=["sd","sdfj","dfj","hgufdh"];
+    alert(words);
+    alert(words.reverse());
+    //创建这样一个对象， 它将字母存储在一个数组中， 并且用一个方法可以将字母连在一起， 显示成一个单词
+    function NewWord(word) {
+        this.word=word;
+        this.show=show;
+    }
+    function show() {
+       return this.word.join('');
+    }
+    var NewWord=new NewWord(["a","c","g"]);
+    alert(NewWord.show());
+</script>
+</body>
+</html>
