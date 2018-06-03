@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //二叉树构造函数
+    function Tree(left,label,right) {
+        this.left=left;
+        this.label=label;
+        this.right=right;
+    }
+    //中序遍历函数
+    function* inorder(t) {
+        if(t){
+            yield* inorder(t.left);
+            yield t.label;
+            yield* inorder(t.right);
+        }
+    }
+    //生成二叉树
+    function makeTree(arr) {
+        if(arr.length==1){
+            return new Tree(null,arr[0],null);
+        }
+        return new Tree(makeTree(arr[0]),arr[1],makeTree(arr[2]));
+    }
+
+    let tree=makeTree([[['a'],'b',['c']],'d',[['e'],'f',['g']]]);
+    var result=[];
+    for(let node of inorder(tree)){
+        result.push(node);
+    }
+    console.log(result);
+</script>
+</body>
+</html>
